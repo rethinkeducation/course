@@ -33,6 +33,7 @@
   <div class="dots"><i></i><i></i><i></i></div>
   <p class="label">正在打開講師選課</p>
   <p id="tip"></p>
+  <p style="position:absolute;bottom:calc(10px + env(safe-area-inset-bottom, 0px));left:0;right:0;margin:0;font-size:11px;color:#4C8A36;opacity:.6">外殼版本 3</p>
 </div>
 <iframe id="app" title="RE-THINK 講師選課" allow="clipboard-write"></iframe>
 <script>
@@ -46,7 +47,7 @@
   fetch(APP_URL + '?tips=1').then(function (r) { return r.json(); }).then(function (j) { if (j && j.tips && j.tips.length) { TIPS = j.tips; try { localStorage.setItem('rt_tips', JSON.stringify(j.tips)); } catch (e) { } } }).catch(function () { });
   var tip = document.getElementById('tip'), i = Math.floor(Math.random() * TIPS.length);
   tip.textContent = TIPS[i];
-  var timer = setInterval(function () { tip.style.opacity = 0; setTimeout(function () { i = Math.floor(Math.random() * TIPS.length); tip.textContent = TIPS[i]; tip.style.opacity = 1; }, 300); }, 3500);
+  var timer = setInterval(function () { tip.style.opacity = 0; setTimeout(function () { i = Math.floor(Math.random() * TIPS.length); tip.textContent = TIPS[i]; tip.style.opacity = 1; }, 300); }, 1750);
   // 收起等待畫面後把它整個移除，避免 iPhone 用它的綠色當作最上方狀態列的顏色
   function done() { var s = document.getElementById('splash'); if (!s || s.classList.contains('hide')) return; s.classList.add('hide'); clearInterval(timer); setTimeout(function () { if (s.parentNode) s.parentNode.removeChild(s); }, 500); }
   // 手機最上方狀態列的顏色：講師頁白色、後台黑色（記住上次的顏色）
